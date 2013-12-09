@@ -4,6 +4,8 @@
 
 *.lck
 
+Wally/OldVersions/
+
 #################
 ## Eclipse
 #################
