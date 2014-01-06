@@ -2,7 +2,7 @@ import math,copy,turtle
 
 front_z=152.0
 back_z=151.5
-square_z=75
+square_z=75 #the z height where the bed arms are at 90 degrees
 l=150
 L=250
 d=200 #print diameter
@@ -73,6 +73,7 @@ def transform(x,y,z):
     return left_stepper*200/math.pi,right_stepper*200/math.pi,zprime
 
 def getABC(position1):
+    global coord
     if "X" not in position1:
         return position1
     position=copy.deepcopy(position1)
@@ -89,6 +90,7 @@ def getABC(position1):
     position['Y']=b2
     position['Z']=c2
     position['F']=fnew
+    coord=position1
     return position
 
 
@@ -107,7 +109,7 @@ def interpolate(start, end, i, n):
     middle={}
     for c in end:
         if c in end and c in start and c in "XYZE":
-            middle[c]=(i*end[c]+(n-i)*start[c])/n
+            middle[c]=(i*end[c]+(n-i)*start[c])/float(n)
         else:
             middle[c]=end[c]
     return middle
